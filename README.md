@@ -12,7 +12,7 @@
 
 * La descripción del [Hands-on](#to-do) se puede consultar a final de este fichero
     * Tratamiento de imágenes: reducción de ruido tipo sal & pimienta
-    * Migración de código CUDA a SYCL (uso de *cublas*)
+    * Migración de código CUDA a SYCL (uso de librería *cuBLAS*)
 
 
 # Setup del lab
@@ -371,8 +371,8 @@ free(c, Q);
     * El 90-95% del código se migra automáticamente
 * Proporciona comentarios para ayudar a los desarrolladores a completar la migración
 * Más info DPCT
-    * Consulta la [guía y refencia](https://software.intel.com/content/www/us/en/develop/documentation/intel-dpcpp-compatibility-tool-user-guide/top.html)
-    * Visita la [Resease Notes](https://software.intel.com/content/www/us/en/develop/articles/release-notes-for-intel-dpcpp-compatibility-tool.html) para encontrar información más actualizada
+    * Consulta la [guía y referencia](https://software.intel.com/content/www/us/en/develop/documentation/intel-dpcpp-compatibility-tool-user-guide/top.html)
+    * Visita la [Release Notes](https://software.intel.com/content/www/us/en/develop/articles/release-notes-for-intel-dpcpp-compatibility-tool.html) para encontrar información más actualizada
 
 ### Pasos
 1. Preparar la fuente CUDA para la migración
@@ -413,7 +413,7 @@ u13xxxx@node:~$ cp cuda/cublas/* cuda-headers/
 
 ![Imagen](figures/oneapi-cli_example.jpg)
 
-* Una vez preparados los códigos de cuda que se encuentran en la carpeta [DPCT-examples](DPCT-examples/vector-add-dpct/) podemos hacer uso de la herramienta DPCT
+* Una vez preparados los códigos de CUDA que se encuentran en la carpeta [DPCT-examples](DPCT-examples/vector-add-dpct/) podemos hacer uso de la herramienta DPCT
 * Vamos a utilizar DPCT con el [único fichero fuente CUDA](DPCT-examples/vector-add-dpct/src/vector_add.cu)
 ```bash
 u13xxxx@node:~$ dpct --cuda-include-path=/home/u13xxxx/cuda-headers/ --out-root=. vector-add-dpct/src/vector_add.cu
@@ -462,9 +462,9 @@ u13xxxx@node:~$ ./vector
 
 
 * Para ello se utiliza el filtro de mediana, en una vecindad de 3x3
-    * Es decir que dado un pixel en la posición de la imagen (i,j), su valor será ```im[i][j]```
+    * Es decir que dado un píxel en la posición de la imagen (i,j), su valor será ```im[i][j]```
     1. Se guardan los vecina del pixel (i,j) de forma temporal
-    2. Se ordenan los valores de los pixel de la vecindad 3x3: **sort**
+    2. Se ordenan los valores de los píxel de la vecindad 3x3: **sort**
     3. Para obtener el valor de la mitad de la ordenación
          * Si no se supera un umbral el pixel de salida es equivalente al de la entrada
          * En caso contrario el pixel resultante sería el valor de la mediana
@@ -502,5 +502,4 @@ u13xxxx@node:~$ cd cuda-samples/Samples/4_CUDA_Libraries/simpleCUBLAS
 u13xxxx@node:~/cuda-samples/Samples/4_CUDA_Libraries/simpleCUBLAS$ intercept-build make
 u13xxxx@node:~/cuda-samples/Samples/4_CUDA_Libraries/simpleCUBLAS$ dpct --cuda-include-path=--cuda-include-path=/home/u13xxxx/cuda-headers/  -p compile_commands.json
 u13xxxx@node:~/cuda-samples/Samples/4_CUDA_Libraries/simpleCUBLAS$ icpx -o simpleCUBLAS dpct_output/simpleCUBLAS.cpp.dp.cpp -fsycl  -L${MKLROOT}/lib/intel64 -lsycl -lOpenCL -lpthread -lm -ldl -DMKL_ILP64  -qmkl=parallel  -I../../../Common/
-
 ```
