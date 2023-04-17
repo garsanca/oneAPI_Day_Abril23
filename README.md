@@ -20,7 +20,7 @@
 ## Transparencias
 * Todo el material está disponible en el repositorio [github](https://github.com/garsanca/oneAPI_Day_Abril23)
     * Puede descargarse fácilmente clonando el repositorio ejecutando en un terminal el comando ```git clone https://github.com/garsanca/oneAPI_Day_Abril23```
-* Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/seminario_oneAPI-Day_Madrid23.pdf) 
+* Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/taller_oneAPI-Day_Madrid23.pdf) 
 
 
 ## Cuenta en DevCloud
